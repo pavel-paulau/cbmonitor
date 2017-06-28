@@ -1,0 +1,1 @@
+from .cbmonitor import app

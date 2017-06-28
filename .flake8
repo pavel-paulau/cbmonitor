@@ -1,0 +1,2 @@
+[flake8]
+exclude = cbmonitor/__init__.py
