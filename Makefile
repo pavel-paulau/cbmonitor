@@ -1,5 +1,7 @@
-PYTHON := python3.5
+SHELL := /bin/bash
+
 ENV := env
+PYTHON := python3.5
 
 build:
 	virtualenv --quiet --python ${PYTHON} ${ENV}
@@ -12,5 +14,9 @@ clean:
 pep8:
 	${ENV}/bin/flake8 --statistics cbmonitor
 	${ENV}/bin/isort --quiet --check-only --recursive cbmonitor
+	${ENV}/bin/pydocstyle cbmonitor
 
-test: pep8
+test:
+	${ENV}/bin/nosetests --verbose --with-coverage --cover-html --cover-package cbmonitor tests.py
+
+check: pep8 test
